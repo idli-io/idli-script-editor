@@ -1,0 +1,49 @@
+{
+  "name": "@idli/idli-script-editor",
+  "version": "0.1.0",
+  "description": "Idli Script Editor",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "es2015": "dist/esm/index.mjs",
+  "es2017": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/idli-script-editor/idli-script-editor.js",
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "scripts": {
+    "build": "stencil build --docs",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate"
+  },
+  "keywords": [
+    "idli",
+    "idli script editor",
+    "web component",
+    "monaco editor"
+  ],
+  "devDependencies": {
+    "@stencil/core": "^1.3.3",
+    "@stencil/sass": "^1.1.1",
+    "@idli/theme": "^1.0.2"
+  },
+  "author": "Shivaji Varma <contact@shivajivarma.com>",
+  "contributors": [],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idli-io/idli-script-editor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/idli-io/idli-script-editor/issues"
+  },
+  "homepage": "https://idli.io/button.html",
+  "dependencies": {
+    "monaco-editor": "^0.20.0"
+  }
+}

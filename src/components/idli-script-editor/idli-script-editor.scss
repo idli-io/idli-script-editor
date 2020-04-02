@@ -1,0 +1,31 @@
+@import "./editor.main";
+@import "../../../node_modules/@idli/theme/variables";
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+.idli-script-editor-component {
+  height: 100%;
+  min-height: 500px;
+  border: 1px solid $color-gray-5;
+
+  &[disabled], &[disabled="true"] {
+    color: $color-gray-5;
+    background-color: $color-gray-1;
+    border-color: $color-gray-5;
+    cursor: not-allowed;
+  }
+
+}

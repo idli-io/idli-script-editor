@@ -15,11 +15,12 @@ export namespace Components {
     * If true, the user cannot interact with the button. Defaults to `false`.
     */
     'disabled': boolean;
-    'format': boolean;
-    'theme': 'light' | 'dark';
     /**
-    * script.
+    * Type definitions as supplied through this attribute.
     */
+    'extraLibs': string[];
+    'language': 'javascript' | 'json';
+    'theme': 'light' | 'dark';
     'value': string;
   }
 }
@@ -43,12 +44,13 @@ declare namespace LocalJSX {
     * If true, the user cannot interact with the button. Defaults to `false`.
     */
     'disabled'?: boolean;
-    'format'?: boolean;
+    /**
+    * Type definitions as supplied through this attribute.
+    */
+    'extraLibs'?: string[];
+    'language'?: 'javascript' | 'json';
     'onInputChange'?: (event: CustomEvent<any>) => void;
     'theme'?: 'light' | 'dark';
-    /**
-    * script.
-    */
     'value'?: string;
   }
 

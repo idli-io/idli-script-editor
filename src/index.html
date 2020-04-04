@@ -13,8 +13,26 @@
 </head>
 <body>
 
+<div>
+    <h2>Language: Javascript</h2>
+    <idli-script-editor id="editor" theme="dark"></idli-script-editor>
+</div>
 
-<idli-script-editor value="function hello(){\n  alert('Hello world!'); \n}" format="true" style="height: calc(100vh - 100px); display: block" theme="dark"/>
+<div>
+    <h2>Language: JSON</h2>
+    <idli-script-editor id="editor-2" language="json" theme="dark"></idli-script-editor>
+</div>
+
+<script>
+    document.getElementById('editor').value = `function helloWorld(){
+    alert('Hello world!');
+}`;
+
+    document.getElementById('editor-2').value = `{
+    "name" : "Shivaji",
+    "age": 25
+}`;
+</script>
 
 </body>
 </html>

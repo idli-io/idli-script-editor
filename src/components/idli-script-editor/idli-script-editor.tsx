@@ -6,27 +6,29 @@ import {Component, Prop, h, Element, EventEmitter, Event} from '@stencil/core';
     shadow: true
 })
 export class IdliScriptEditor {
-    /**
-     * script.
-     */
+
     @Prop() value: string;
 
-    private editor: any;
+    /**
+     * Type definitions as supplied through this attribute.
+     */
+    @Prop() extraLibs: string[];
 
+    private editor: any;
 
     /**
      * If true, the user cannot interact with the button. Defaults to `false`.
      */
     @Prop() disabled: boolean = false;
 
-    @Prop() format: boolean = false;
-
     @Prop() theme: 'light' | 'dark' = 'light';
+
+    @Prop() language: 'javascript' | 'json' = 'javascript';
 
     @Element() private element: HTMLElement;
 
     async loadScript(src) {
-        return new Promise( (resolve) => {
+        return new Promise((resolve) => {
             const script = document.createElement('script');
             document.head.appendChild(script);
             script.src = src;
@@ -48,31 +50,22 @@ export class IdliScriptEditor {
     @Event() inputChange: EventEmitter;
 
     componentDidLoad() {
-        const that = this;
-        setTimeout(function() {
-            const $root = that.element.shadowRoot;
+        setTimeout(() => {
+            const $root = this.element.shadowRoot;
             const monaco = window['monaco'];
-            monaco.languages.typescript.javascriptDefaults.addExtraLib([
-                'declare class Facts {',
-                '    /**',
-                '     * Returns the next fact',
-                '     */',
-                '    static next():string',
-                '}'
-            ].join('\n'));
 
-            if (that.format)
-                that.value = that.value.replace(/\\n/g, "\n");
+            monaco.languages.typescript.javascriptDefaults.addExtraLib(this.extraLibs);
 
-            that.editor = monaco.editor.create($root.querySelector('.idli-script-editor-component'), {
-                value: that.value,
-                language: 'javascript',
-                theme: 'vs-' + that.theme
+            this.editor = monaco.editor.create($root.querySelector('.idli-script-editor-component'), {
+                value: this.value,
+                language: this.language,
+                theme: 'vs-' + this.theme
             });
-            that.editor.onDidChangeModelContent(() => {
-                const oldValue = that.value;
-                that.value = that.editor.getValue();
-                that.inputChange.emit({event, oldValue, newValue: that.value});
+
+            this.editor.onDidChangeModelContent(() => {
+                const oldValue = this.value;
+                this.value = this.editor.getValue();
+                this.inputChange.emit({event, oldValue, newValue: this.value});
             });
         }, 1000);
 

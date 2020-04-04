@@ -1,6 +1,6 @@
 {
   "name": "@idli/idli-script-editor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Idli Script Editor",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -42,7 +42,7 @@
   "bugs": {
     "url": "https://github.com/idli-io/idli-script-editor/issues"
   },
-  "homepage": "https://idli.io/button.html",
+  "homepage": "https://idli.io/script-editor.html",
   "dependencies": {
     "monaco-editor": "^0.20.0"
   }

@@ -56,10 +56,27 @@ export class IdliScriptEditor {
 
             monaco.languages.typescript.javascriptDefaults.addExtraLib(this.extraLibs);
 
+            monaco.editor.defineTheme('disabled-theme', {
+                base: 'vs',
+                inherit: true,
+                rules: [{ background: 'EDF9FA' }],
+                colors: {
+                    'editor.background': '#c7c6d3'
+                }
+            });
+
+            let theme = 'vs' + this.theme;
+            if (this.disabled)
+                theme = 'disabled-theme';
+
             this.editor = monaco.editor.create($root.querySelector('.idli-script-editor-component'), {
                 value: this.value,
                 language: this.language,
-                theme: 'vs-' + this.theme
+                theme: theme,
+                readOnly: this.disabled,
+                colors: {
+                    'editor.background': '#EDF9FA'
+                }
             });
 
             this.editor.onDidChangeModelContent(() => {

@@ -23,12 +23,13 @@
 ```
 <custom-element-demo>
   <template>
-    <script src='https://unpkg.com/@idli/idli-script-editor@0.5.0/dist/idli-script-editor.js'></script>
-    <idli-script-editor>Default</idli-script-editor>
-    <idli-script-editor variant="primary">Primary</idli-script-editor>
-    <idli-script-editor variant="danger">Danger</idli-script-editor>
-    <idli-script-editor variant="dashed">Dashed</idli-script-editor>
-    <idli-script-editor variant="link">Link</idli-script-editor>
+    <script src='https://unpkg.com/@idli/idli-script-editor@0.1.1/dist/idli-script-editor.js'></script>
+    <idli-script-editor id="editor" theme="dark"></idli-script-editor>
+    <script>
+        document.getElementById('editor').value = `function helloWorld(){
+        alert('Hello world!');
+    }`;
+    </script>
   </template>
 </custom-element-demo>
 ```
@@ -40,14 +41,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Idli Script Editor</title>
-  <script src='https://unpkg.com/@idli/idli-script-editor@0.1.0/dist/idli-script-editor.js'></script>
+  <script src='https://unpkg.com/@idli/idli-script-editor@0.1.1/dist/idli-script-editor.js'></script>
 </head>
 <body>
-  <idli-script-editor>Default</idli-script-editor>
-  <idli-script-editor variant="primary">Primary</idli-script-editor>
-  <idli-script-editor variant="danger">Danger</idli-script-editor>
-  <idli-script-editor variant="dashed">Dashed</idli-script-editor>
-  <idli-script-editor variant="link">Link</idli-script-editor>
+  <idli-script-editor id="editor" theme="dark"></idli-script-editor>
+<script>
+    document.getElementById('editor').value = `function helloWorld(){
+    alert('Hello world!');
+}`;
+</script>
 </body>
 </html>
 ```

@@ -1,4 +1,4 @@
-import {Component, Prop, h, Element, EventEmitter, Event} from '@stencil/core';
+import {Component, Prop, h, Element, EventEmitter, Event, Watch} from '@stencil/core';
 
 @Component({
     tag: 'idli-script-editor',
@@ -54,7 +54,7 @@ export class IdliScriptEditor {
             const $root = this.element.shadowRoot;
             const monaco = window['monaco'];
 
-            monaco.languages.typescript.javascriptDefaults.addExtraLib(this.extraLibs);
+            //monaco.languages.typescript.javascriptDefaults.addExtraLib(this.extraLibs);
 
             monaco.editor.defineTheme('disabled-theme', {
                 base: 'vs',
@@ -65,18 +65,11 @@ export class IdliScriptEditor {
                 }
             });
 
-            let theme = 'vs' + this.theme;
-            if (this.disabled)
-                theme = 'disabled-theme';
-
             this.editor = monaco.editor.create($root.querySelector('.idli-script-editor-component'), {
                 value: this.value,
                 language: this.language,
-                theme: theme,
-                readOnly: this.disabled,
-                colors: {
-                    'editor.background': '#EDF9FA'
-                }
+                theme: this.getTheme(),
+                readOnly: this.disabled
             });
 
             this.editor.onDidChangeModelContent(() => {
@@ -88,6 +81,23 @@ export class IdliScriptEditor {
 
     }
 
+    getTheme() {
+        let theme = 'vs-' + this.theme;
+        if (this.disabled)
+            theme = 'disabled-theme';
+        return theme;
+    }
+
+    @Watch('disabled')
+    watchDisabled(newValue: string) {
+        this.editor.updateOptions({readOnly: newValue});
+        window['monaco'].editor.setTheme(this.getTheme());
+    }
+
+    @Watch('value')
+    watchValue(newValue: string) {
+        this.editor.setValue(newValue);
+    }
 
     render() {
         return <div class="idli-script-editor-component"/>;

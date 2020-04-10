@@ -3,7 +3,7 @@
 ## Using this component
 
 ### Script tag
-- Put a script tag similar to this `<script src='https://unpkg.com/@idli/idli-script-editor@0.1.3/dist/idli-script-editor.js'></script>` in the head of your index.html
+- Put a script tag similar to this `<script src='https://unpkg.com/@idli/idli-script-editor@0.1.4/dist/idli-script-editor.js'></script>` in the head of your index.html
 - Then you can use the element anywhere in your template, JSX, html etc
 
 ### Node Modules
@@ -23,7 +23,7 @@
 ```
 <custom-element-demo>
   <template>
-    <script src='https://unpkg.com/@idli/idli-script-editor@0.1.3/dist/idli-script-editor.js'></script>
+    <script src='https://unpkg.com/@idli/idli-script-editor@0.1.4/dist/idli-script-editor.js'></script>
     <idli-script-editor id="editor" theme="dark"></idli-script-editor>
     <script>
         document.getElementById('editor').value = `function helloWorld(){
@@ -41,7 +41,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Idli Script Editor</title>
-  <script src='https://unpkg.com/@idli/idli-script-editor@0.1.3/dist/idli-script-editor.js'></script>
+  <script src='https://unpkg.com/@idli/idli-script-editor@0.1.4/dist/idli-script-editor.js'></script>
 </head>
 <body>
   <idli-script-editor id="editor" theme="dark"></idli-script-editor>

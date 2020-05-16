@@ -19,6 +19,14 @@ export namespace Components {
     * Type definitions as supplied through this attribute.
     */
     'extraLibs': string[];
+    /**
+    * If true, the form will be in inline format. Defaults to `false`.
+    */
+    'inline': boolean;
+    /**
+    * The input field label.
+    */
+    'label': string;
     'language': 'javascript' | 'json';
     'theme': 'light' | 'dark';
     'value': string;
@@ -48,6 +56,14 @@ declare namespace LocalJSX {
     * Type definitions as supplied through this attribute.
     */
     'extraLibs'?: string[];
+    /**
+    * If true, the form will be in inline format. Defaults to `false`.
+    */
+    'inline'?: boolean;
+    /**
+    * The input field label.
+    */
+    'label'?: string;
     'language'?: 'javascript' | 'json';
     'onInputChange'?: (event: CustomEvent<any>) => void;
     'theme'?: 'light' | 'dark';

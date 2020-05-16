@@ -7,6 +7,11 @@ import {Component, Prop, h, Element, EventEmitter, Event, Watch} from '@stencil/
 })
 export class IdliScriptEditor {
 
+    /**
+     * The input field label.
+     */
+    @Prop() label: string;
+
     @Prop() value: string;
 
     /**
@@ -24,6 +29,11 @@ export class IdliScriptEditor {
     @Prop() theme: 'light' | 'dark' = 'light';
 
     @Prop() language: 'javascript' | 'json' = 'javascript';
+
+    /**
+     * If true, the form will be in inline format. Defaults to `false`.
+     */
+    @Prop() inline: boolean = false;
 
     @Element() private element: HTMLElement;
 
@@ -99,7 +109,25 @@ export class IdliScriptEditor {
         this.editor.setValue(newValue);
     }
 
-    render() {
+    getInlineClass() {
+        let inline = "";
+        if (this.inline)
+            inline =  'inline';
+        return inline;
+    }
+
+    getLabelElement() {
+        if (this.label)
+            return <label class="label">{this.label}</label>;
+    }
+
+    private getInputElement() {
         return <div class="idli-script-editor-component"/>;
+    }
+
+    render() {
+        return <div class={"idli-script-component  " + this.getInlineClass()}>
+            {[this.getLabelElement(), this.getInputElement()]}
+        </div>;
     }
 }

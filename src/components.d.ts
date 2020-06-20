@@ -27,7 +27,7 @@ export namespace Components {
     * The input field label.
     */
     'label': string;
-    'language': 'javascript' | 'json';
+    'language': 'javascript' | 'json' | 'html';
     'theme': 'light' | 'dark';
     'value': string;
   }
@@ -64,7 +64,7 @@ declare namespace LocalJSX {
     * The input field label.
     */
     'label'?: string;
-    'language'?: 'javascript' | 'json';
+    'language'?: 'javascript' | 'json' | 'html';
     'onInputChange'?: (event: CustomEvent<any>) => void;
     'theme'?: 'light' | 'dark';
     'value'?: string;

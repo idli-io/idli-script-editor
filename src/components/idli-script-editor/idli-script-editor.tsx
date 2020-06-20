@@ -28,7 +28,7 @@ export class IdliScriptEditor {
 
     @Prop() theme: 'light' | 'dark' = 'light';
 
-    @Prop() language: 'javascript' | 'json' = 'javascript';
+    @Prop() language: 'javascript' | 'json' | 'html' = 'javascript';
 
     /**
      * If true, the form will be in inline format. Defaults to `false`.

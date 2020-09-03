@@ -25,7 +25,9 @@
     alert('Hello world!');
 }`;
 
-
+    document.getElementById('editor').addEventListener("inputChange", function() {
+        console.log(event.detail);
+    })
 </script>
 
 </body>

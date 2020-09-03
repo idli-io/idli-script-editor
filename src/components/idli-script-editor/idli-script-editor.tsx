@@ -1,4 +1,26 @@
-import {Component, Prop, h, Element, EventEmitter, Event, Watch} from '@stencil/core';
+import {Component, Element, Event, EventEmitter, h, Prop, Watch} from '@stencil/core';
+
+function debounce(func, wait, immediate) {
+    let timeout;
+
+    return function executedFunction() {
+        let context = this;
+        let args = arguments;
+
+        let later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+
+        let callNow = immediate && !timeout;
+
+        clearTimeout(timeout);
+
+        timeout = setTimeout(later, wait);
+
+        if (callNow) func.apply(context, args);
+    };
+}
 
 @Component({
     tag: 'idli-script-editor',
@@ -60,6 +82,8 @@ export class IdliScriptEditor {
     @Event() inputChange: EventEmitter;
 
     componentDidLoad() {
+        const that = this;
+
         setTimeout(() => {
             const $root = this.element.shadowRoot;
             const monaco = window['monaco'];
@@ -69,7 +93,7 @@ export class IdliScriptEditor {
             monaco.editor.defineTheme('disabled-theme', {
                 base: 'vs',
                 inherit: true,
-                rules: [{ background: 'EDF9FA' }],
+                rules: [{background: 'EDF9FA'}],
                 colors: {
                     'editor.background': '#c7c6d3'
                 }
@@ -82,11 +106,14 @@ export class IdliScriptEditor {
                 readOnly: this.disabled
             });
 
-            this.editor.onDidChangeModelContent(() => {
-                const oldValue = this.value;
-                this.value = this.editor.getValue();
-                this.inputChange.emit({event, oldValue, newValue: this.value});
-            });
+
+            this.editor.onDidChangeModelContent(debounce(() => {
+                const oldValue = that.value;
+                that.value = that.editor.getValue();
+                that.inputChange.emit({event, oldValue, newValue: that.value});
+            }, 250, false));
+
+
         }, 1000);
 
     }
@@ -115,7 +142,7 @@ export class IdliScriptEditor {
     getInlineClass() {
         let inline = "";
         if (this.inline)
-            inline =  'inline';
+            inline = 'inline';
         return inline;
     }
 

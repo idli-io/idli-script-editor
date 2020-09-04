@@ -134,7 +134,6 @@ export class IdliScriptEditor {
     @Watch('value')
     watchValue(newValue: string) {
         if (this.editor.getValue() !== this.value) {
-            console.log("test");
             this.editor.setValue(newValue);
         }
     }
